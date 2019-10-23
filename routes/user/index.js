@@ -2,7 +2,7 @@ const user = require('express').Router();
 
 const controllers = require('../../controllers');
 
-user.get('/', controllers.UserController.getRoot);
+user.get('/', controllers.UserController.getUser);
 
 user.get('/edit', controllers.UserController.getEdit); // masuk ke form edit untuk lengkapi data diri.
 user.post('/edit', controllers.UserController.postEdit); // submit data, balik ke halaman user
