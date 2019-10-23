@@ -3,9 +3,14 @@ module.exports = (sequelize, DataTypes) => {
 	class Personal extends sequelize.Sequelize.Model {}
 	Personal.init(
 		{
+			UserId: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			fullName: {
 				type: DataTypes.STRING,
-				allowNull: { args: false, msg: 'Full name cannot be empty.' },
+				// allowNull: { args: false, msg: 'Full name cannot be empty.' },
+				allowNull: false,
 				validate: {
 					notEmpty: { msg: 'Full name cannot be empty.' }
 				}
