@@ -29,7 +29,7 @@ class UserController {
 		res.render('user/balance');
 	}
 
-	static getBalance(req, res) {
+	static postBalance(req, res) {
 		res.redirect(`/user/${req.params.id}`);
 	}
 }
