@@ -1,11 +1,17 @@
-const router = require('express').Router()
-const UserController = require('...controllers/UserController')
+const cart = require('express').Router();
 
+const controllers = require('../../controllers');
 
-router.get('/:id', UserController.editCart) // masuk ke form isian belanja yang kata isi
-router.post('/:id', UserController.updateCart) //disini ada checkout
+cart.get('/', controllers.TransactionController.getCart); // masuk ke form isian belanja yang kata isi
+cart.post('/', controllers.TransactionController.postCart); // disini ada checkout
 
-router.get('/:id/ceckout', UserController.checout) // berisi form alamat user yang bisa diupdate dan harus diiisi
-                                                    // ada tombol confirm kalau udah langsung kirim sms kemudian kembali ke home
+cart.get('/user/edit', controllers.TransactionController.getUserEdit); // masuk ke form buat isi alamat user
+cart.post('/user/edit', controllers.TransactionController.postUserEdit);
+// ada tombol confirm kalau udah langsung kirim sms kemudian kembali ke home
 
-module.exports = router
+cart.get('/user/balance', controllers.TransactionController.getUserBalance); // masuk ke form buat nambah balance
+cart.post('/user/balance', controllers.TransactionController.postUserBalance);
+
+// cart.post('/checkout', controllers.TransactionController.postCheckout);
+
+module.exports = cart;
