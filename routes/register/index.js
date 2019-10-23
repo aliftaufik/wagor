@@ -1,6 +1,8 @@
-const router = require('express').Router()
+const register = require('express').Router();
 
-router.get('/', UserController.add) //peratama masuk berisi form
-router.post('/', UserController.create) //kalo submit langsung balik ke home
+const controller = require('../../controllers');
 
-module.exports = router
+register.get('/', controller.UserController.getRegister); //peratama masuk berisi form
+register.post('/', controller.UserController.getRegister); //kalo submit langsung balik ke home
+
+module.exports = register;
