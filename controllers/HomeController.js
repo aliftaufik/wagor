@@ -16,7 +16,6 @@ class HomeController {
 			})
 			.then(products => {
 				data.Products = products;
-				console.log(data);
 				res.render('home', data);
 			})
 			.catch(err => {
