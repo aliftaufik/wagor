@@ -1,23 +1,15 @@
 const router = require('express').Router();
-// const register = require('./register');
-// const user = require('./user');
-// const cart = require('./cart');
-// const subscription = require('./subscription');
+const register = require('./register');
+const user = require('./user');
+const cart = require('./cart');
+const subscription = require('./subscription');
 
+const controller = require('../controllers');
 
-router.get('/', (req, res) => {
-    res.render('home')
-}) // home langsung ada tombol register sama login
-// router.use('/register', register);
-// router.use('/user', user);
-// router.use('/cart', cart);
-// router.use('/subscription', subscription);
-router.get('/register', (req, res) => {
-    res.render('register')
-})
-
-router.get('/subscription', (req, res) => {
-    res.render('subscription')
-})
+router.get('/', controller.HomeController.getRoot); // home langsung ada tombol register sama login. Home bisa nampilin konten yang beda buat user login dan yng blum login.
+router.use('/register', register); // masuk ke halaman register
+router.use('/:id/user', user); // masuk ke halaman user
+router.use('/:id/cart/', cart); //masuk ke chart transaksi
+router.use('/:id/subscription/', subscription);
 
 module.exports = router;

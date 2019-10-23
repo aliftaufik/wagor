@@ -1,9 +1,13 @@
-// const router = require('exprss').Router()
+const user = require('express').Router();
 
-// router.get('/:id/edit', UserController.edit)//berisi form update nambah address dll
-// router.post('/:id/edit', UserController.update)
+const controllers = require('../../controllers');
 
-// router.get('/:id/balance', UserController.edit)//berisi form update nambah balance
-// router.post('/:id/balance', UserController.update)
+user.get('/', controllers.UserController.getRoot);
 
-// module.exports = router
+user.get('/edit', controllers.UserController.getEdit); // masuk ke form edit untuk lengkapi data diri.
+user.post('/edit', controllers.UserController.postEdit); // submit data, balik ke halaman user
+
+user.get('/balance', controllers.UserController.getBalance); // masuk ke form isi balance
+user.post('/balance', controllers.UserController.postBalance); // submit data, balik ke halaman user
+
+module.exports = user;
