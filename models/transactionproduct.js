@@ -1,8 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-	const helpers = require('../helpers');
-	class SubscriptionProduct extends sequelize.Sequelize.Model {}
-	SubscriptionProduct.init(
+	class TransactionProduct extends sequelize.Sequelize.Model {}
+	TransactionProduct.init(
 		{
 			SubscriptionId: {
 				type: DataTypes.INTEGER,
@@ -29,14 +28,19 @@ module.exports = (sequelize, DataTypes) => {
 						});
 					}
 				}
+			},
+			amount: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+				defaultValue: 1
 			}
 		},
-		{ sequelize, modelName: 'SubscriptionProduct' }
+		{ sequelize, modelName: 'TransactionProduct' }
 	);
-	SubscriptionProduct.associate = function(models) {
-		SubscriptionProduct.belongsTo(models.Subscription);
-		SubscriptionProduct.belongsTo(models.Product);
+	TransactionProduct.associate = function(models) {
+		TransactionProduct.belongsTo(models.Transaction);
+		TransactionProduct.belongsTo(models.Product);
 		// associations can be defined here
 	};
-	return SubscriptionProduct;
+	return TransactionProduct;
 };
