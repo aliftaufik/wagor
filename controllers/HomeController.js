@@ -6,8 +6,9 @@ class HomeController {
 	}
 
 	static getHomeIn(req, res) {
-		models.User.findByPk(req.params.id, { include: models.Transaction }).then(user => {});
-		res.render('homeIn');
+		models.User.findByPk(req.params.id, { include: models.Transaction }).then(user => {
+			res.render('homeIn', user);
+		});
 	}
 }
 
