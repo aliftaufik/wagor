@@ -6,9 +6,19 @@ class HomeController {
 	}
 
 	static getHomeIn(req, res) {
-		models.User.findByPk(req.params.id, { include: models.Transaction }).then(user => {
-			res.render('homeIn', user);
-		});
+		const data = {};
+		models.User.findByPk(req.params.id, { include: models.Transaction })
+			.then(user => {
+				data.User = user;
+				return models.Product.findAll();
+			})
+			.then(products => {
+				data.Products = products;
+				res.render('homeIn', data);
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 }
 
