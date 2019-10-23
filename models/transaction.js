@@ -1,12 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  
-  const Transaction = sequelize.define('Transaction', {
-    UserId: DataTypes.INTEGER,
-    totalPrice: DataTypes.INTEGER
-  }, {});
-  Transaction.associate = function(models) {
-    // associations can be defined here
-  };
-  return Transaction;
+	class Transaction extends sequelize.Sequelize.Model {}
+	Transaction.init(
+		{
+			UserId: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
+			totalPrice: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			}
+		},
+		{ sequelize, modelName: 'Transaction' }
+	);
+	Transaction.associate = function(models) {
+		Transaction.belongsTo(models.User);
+		// associations can be defined here
+	};
+	return Transaction;
 };
