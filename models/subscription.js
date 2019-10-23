@@ -1,3 +1,4 @@
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
 	class Subscription extends sequelize.Sequelize.Model {}

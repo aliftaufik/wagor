@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-// const router = require('express').Router();
-
-
-// router.get('/:id') //di render ke form subscription
-// router.post('/:id') // kalo succes langsung kirim ke home   
-
-// module.exports = router
-=======
 const subscription = require('express').Router();
 
 const controllers = require('../../controllers');
@@ -22,4 +13,3 @@ subscription.get('/user/balance', controllers.TransactionController.getUserBalan
 subscription.post('/user/balance', controllers.TransactionController.postUserBalance);
 
 module.exports = subscription;
->>>>>>> 5ce928f1664996604dd69b1a7add7be74a7497ce
