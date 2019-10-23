@@ -1,10 +1,12 @@
 const models = require('../models');
 
 class HomeController {
+	// Home sebelum user login
 	static getHome(req, res) {
-		res.render('home');
+		res.render('');
 	}
 
+	// Home setelah user login
 	static getHomeIn(req, res) {
 		const data = {};
 		models.User.findByPk(req.params.id, { include: models.Transaction })
@@ -14,7 +16,8 @@ class HomeController {
 			})
 			.then(products => {
 				data.Products = products;
-				res.render('homeIn', data);
+				console.log(data);
+				res.render('home', data);
 			})
 			.catch(err => {
 				res.send(err);
