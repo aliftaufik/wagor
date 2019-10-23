@@ -1,5 +1,3 @@
-class Controller {
-	static getUserData(id) {}
-}
+class Controller {}
 
 module.exports = Controller;

@@ -10,7 +10,7 @@ router.get('/', controller.HomeController.getHome); // home langsung ada tombol 
 router.get('/:id', controller.HomeController.getHomeIn); // home buat nampilin produk
 router.use('/register', register); // masuk ke halaman register
 router.use('/:id/user', user); // masuk ke halaman user
-router.use('/:id/cart/', cart); //masuk ke chart transaksi
-router.use('/:id/subscription/', subscription);
+router.use('/:id/cart', cart); // masuk ke chart transaksi
+router.use('/:id/subscription', subscription); // masuk ke halaman subscription
 
 module.exports = router;

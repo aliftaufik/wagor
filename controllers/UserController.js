@@ -1,3 +1,5 @@
+const models = require('../models');
+
 class UserController {
 	static getRegister(req, res) {
 		res.render('register');
@@ -7,8 +9,12 @@ class UserController {
 		res.redirect('/');
 	}
 
-	getRoot(req, res) {
-		res.render('user');
+	static getUser(req, res) {
+		const data = {};
+		models.User.findAll({ include: models.Subscription }).then(user => {
+			data.User = user;
+			res.render('user', data);
+		});
 	}
 
 	static getEdit(req, res) {
