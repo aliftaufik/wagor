@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<%- include('../partials/bootstrapCDN') %>
+		<title>Home - Wagor Waroeng Gorengan Online</title>
+		<style>
+			h1 {
+				text-align: center;
+				font-family: 'Courier New', Courier, monospace;
+				font-size: 70px;
+				font-style: strong;
+				margin: 0px;
+			}
+			.header {
+				text-align: center;
+				background-color: aquamarine;
+				padding-bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<%- include('../partials/navbar', {title: 'Home', User}) %>
+		<div class="header">
+			<h1>WAGOR</h1>
+			<h6>Waroeng Gorengan Online Pertama di Indonesia</h6>
+		</div>
+
+		<div class="container">
+			<div class="row justify-content-center">
+				<form action="" method="post" class="con-12"></form>
+				<% for (const product of Products) { %>
+
+				<div class="col-md-3 form-group text-center">
+					<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
+					<label for="<%= product.productName %>"><%= product.productName %></label>
+					<div>
+						<button class="btn btn-primary btn-sm">-</button>
+						<span id="<%= product.id %>">0</span>
+						<button class="btn btn-primary btn-sm">+</button>
+					</div>
+				</div>
+
+				<% } %>
+			</div>
+		</div>
+	</body>
+</html>

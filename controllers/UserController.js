@@ -11,29 +11,59 @@ class UserController {
 
 	static getUser(req, res) {
 		const data = {};
-		models.User.findAll({ include: models.Subscription }).then(user => {
-			data.User = user;
-			res.render('user', data);
-		});
+		models.User.findByPk(req.params.id, { include: [models.Personal, models.Subscription] }).then(
+			user => {
+				data.User = user;
+				console.log(data);
+				res.render('user', data);
+			}
+		);
 	}
 
-	static getEdit(req, res) {
-		res.render('user/edit');
+	static getUserEdit(req, res) {
+		const data = {};
+		models.User.findByPk(req.params.id, { include: models.Personal })
+			.then(user => {
+				data.User = user;
+				res.render('user/edit', data);
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 
-	static postEdit(req, res) {
-		res.redirect(`/user/${req.params.id}`);
+	// This method still broken, because User and Personal are different tables
+	static postUserEdit(req, res) {
+		models.User.update(req.body, { where: { id: req.params.id } })
+			.then(count => {
+				res.redirect(`${req.baseUrl}`); // biar bisa langsung balik ke Cart atau ke Subscription atau ke user
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 
-	static getBalance(req, res) {
-		res.render('user/balance');
+	static getUserBalance(req, res) {
+		const data = {};
+		models.User.findByPk(req.params.id)
+			.then(user => {
+				data.User = user;
+				res.render('user/balance', data);
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 
-	static postBalance(req, res) {
-		res.redirect(`/user/${req.params.id}`);
+	static postUserBalance(req, res) {
+		models.User.update({ balance: req.body.balance }, { where: { id: req.params.id } })
+			.then(count => {
+				res.redirect(`${req.baseUrl}`); // biar bisa langsung balik ke Cart atau ke Subscription atau ke user
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 }
 
 module.exports = UserController;
-
-

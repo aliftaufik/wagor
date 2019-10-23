@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
 	class Subscription extends sequelize.Sequelize.Model {}
 	Subscription.init(
 		{
-			userId: {
+			UserId: {
 				type: DataTypes.INTEGER,
 				allowNull: false
 			},
