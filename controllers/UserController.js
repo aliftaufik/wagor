@@ -21,15 +21,18 @@ class UserController {
 	}
 
 	static getUserEdit(req, res) {
-		models.User.findByPk(req.params.id)
+		const data = {};
+		models.User.findByPk(req.params.id, { include: models.Personal })
 			.then(user => {
-				res.render('user/edit', { user });
+				data.User = user;
+				res.render('user/edit', data);
 			})
 			.catch(err => {
 				res.send(err);
 			});
 	}
 
+	// This method still broken, because User and Personal are different tables
 	static postUserEdit(req, res) {
 		models.User.update(req.body, { where: { id: req.params.id } })
 			.then(count => {
@@ -41,9 +44,11 @@ class UserController {
 	}
 
 	static getUserBalance(req, res) {
+		const data = {};
 		models.User.findByPk(req.params.id)
 			.then(user => {
-				res.render('user/balance');
+				data.User = user;
+				res.render('user/balance', data);
 			})
 			.catch(err => {
 				res.send(err);

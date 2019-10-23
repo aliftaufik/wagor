@@ -3,10 +3,10 @@ const models = require('../models');
 class TransactionController {
 	static getCart(req, res) {
 		const data = {};
-		data.products = req.body.products;
+		data.order = req.body.products;
 		models.User.findByPk(req.params.id).then(user => {
 			data.User = user;
-			models.data.res.render('cart', data);
+			res.render('cart', data);
 		});
 	}
 

@@ -22,7 +22,7 @@
 					<a class="dropdown-item" href="/<%= User.id %>/user">View User</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item disabled" href="#">Balance: <%= User.balance %></a>
-					<a class="dropdown-item" href="/<%= User.id %>/balance">Add Balance</a>
+					<a class="dropdown-item" href="/<%= User.id %>/user/balance">Add Balance</a>
 				</div>
 			</li>
 
@@ -30,7 +30,7 @@
 				<a class="nav-link" href="/<%= User.id %>/cart">Cart</a>
 			</li>
 
-			<li class="nav-item">
+			<li class="nav-item <%= title === 'Subscription' ? 'active' : '' %>">
 				<a href="/<%= User.id %>/subscription" class="nav-link">Subscription</a>
 			</li>
 
