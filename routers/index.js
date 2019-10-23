@@ -1,17 +1,15 @@
-const router = require('exprss').Router()
-const UserController = require('controllers/UserController')
-
-router.get('/register', UserController.add) //peratama masuk
-router.post('/register', UserController.create)
-
-router.get('/user/:id/edit', UserController.edit)//update nambah address dll
-router.post('/user/:id/edit', UserController.edit)
-
-router.get(':id/cart', UserController.addCart) // masuk ke form isian belanja yang kata isi
-router.post(':id/cart', UserController.createCart)
-
-router.
+const router = require('exprss').Router();
+const register = require('./register');
+const user = require('./user');
+const cart = require('./cart');
+const subscription = require('./subscription');
 
 
+router.get('/') // home langsung ada tombol register sama login
+router.use('/register', register);
+router.use('/user', user);
+router.use('/cart', cart);
+router.use('/subscription', subscription);
 
-module.exports = router
+
+module.exports = router;
