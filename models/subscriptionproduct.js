@@ -34,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
 		{ sequelize, modelName: 'SubscriptionProduct' }
 	);
 	SubscriptionProduct.associate = function(models) {
-		SubscriptionProduct.belongsTo(models.Subscription);
-		SubscriptionProduct.belongsTo(models.Product);
+		// SubscriptionProduct.belongsTo(models.Subscription);
+		// SubscriptionProduct.belongsTo(models.Product);
 		// associations can be defined here
 	};
 	return SubscriptionProduct;
