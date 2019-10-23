@@ -1,4 +1,3 @@
-
 'use strict';
 module.exports = (sequelize, DataTypes) => {
 	class Subscription extends sequelize.Sequelize.Model {}
@@ -30,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 	);
 	Subscription.associate = function(models) {
 		Subscription.belongsTo(models.User);
+		Subscription.belongsToMany(models.Product, { through: models.SubscriptionProduct });
 		// associations can be defined here
 	};
 	return Subscription;

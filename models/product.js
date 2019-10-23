@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
 		{ sequelize, modelName: 'Product' }
 	);
 	Product.associate = function(models) {
+		Product.belongsToMany(models.Transaction, { through: models.TransactionProduct });
+		Product.belongsToMany(models.Subscription, { through: models.SubscriptionProduct });
 		// associations can be defined here
 	};
 	return Product;
