@@ -14,13 +14,14 @@ app.use(
 );
 
 // for testing
-app.use((req, res, next) => {
-	req.session.User = {
-		id: 1,
-		username: 'alif'
-	};
-	next();
-});
+
+// app.use((req, res, next) => {
+// 	req.session.User = {
+// 		id: 1,
+// 		username: 'alif'
+// 	};
+// 	next();
+// });
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));

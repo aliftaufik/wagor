@@ -17,8 +17,7 @@
 				<% if (!User.Personal || !User.Personal.fullName || !User.Personal.address ) { %>
 
 				<small
-					>Your personal data is not completed yet.
-					<a href="/<%= User.id %>/user/edit">Complete it now.</a></small
+					>Your personal data is not completed yet. <a href="/user/edit">Complete it now.</a></small
 				>
 
 				<% } %>
@@ -70,7 +69,7 @@
 					<tr>
 						<th>Balance</th>
 						<th>:</th>
-						<td><%= User.balance %></td>
+						<td><%= User.balanceInRp %></td>
 						<td></td>
 					</tr>
 					<tr>

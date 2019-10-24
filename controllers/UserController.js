@@ -6,13 +6,17 @@ class UserController {
 	}
 
 	static postRegister(req, res) {
-		models.User.create(req.body).then(user => {
-			req.session.User = {
-				id: user.id,
-				username: user.username
-			};
-			res.redirect('/user/edit');
-		});
+		models.User.create(req.body)
+			.then(user => {
+				req.session.User = {
+					id: user.id,
+					username: user.username
+				};
+				res.redirect('/user/edit');
+			})
+			.catch(err => {
+				res.send(err);
+			});
 	}
 
 	static getUser(req, res) {

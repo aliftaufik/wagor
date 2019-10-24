@@ -13,7 +13,7 @@ routes.get('/', controller.HomeController.getHome); // home langsung ada tombol 
 routes.use('/register', register); // masuk ke halaman register
 routes.use('/login', login);
 
-// routes.use(middlewares.isLogin);
+routes.use(middlewares.isLogin);
 routes.use('/user', user); // masuk ke halaman user
 routes.use('/cart', cart); // masuk ke chart transaksi
 routes.use('/subscription', subscription); // masuk ke halaman subscription

@@ -12,7 +12,7 @@
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1><%= User.Personal.fullName %> Balance</h1>
+				<h1><%= User.Personal ? User.Personal.fullName : User.username %> Balance</h1>
 				<table>
 					<tr>
 						<th>Total Balance</th>
