@@ -5,32 +5,41 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<%- include('../partials/bootstrapCDN') %>
-		<title>Update Personal Data</title>
+		<title>Add Balance</title>
 	</head>
-
 	<body>
-		<%- include('../partials/navbar', {title: 'User', User}) %>
+		<%- include('../partials/navbar', {title: 'User'}) %>
 
-		<section class="container ml-0">
-			<h1>Detail Saldo</h1>
-			<table>
-				<tr>
-					<th>Total Saldo</th>
-				</tr>
-				<tr>				
-					<td><%= User.balance%></td>
-				</tr>
-			</table>
-		</section>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1><%= User.Personal.fullName %> Balance</h1>
+				<table>
+					<tr>
+						<th>Total Balance</th>
+					</tr>
+					<tr>
+						<td><%= User.balanceInRp %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
-		<section class="container ml-0">
-			<form>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Please Enter Nominal</label>
-					<input type="number" name="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Nominal">
-				</div>				
-				<button type="submit" class="btn btn-primary">Add</button>
-			</form>
-		</section>
+		<div class="container">
+			<div class="row">
+				<form action="" method="post" class="col-4">
+					<div class="form-group">
+						<label for="balance">Add more Balance</label>
+						<input
+							type="number"
+							name="balance"
+							class="form-control"
+							id="balance"
+							placeholder="Enter Nominal"
+						/>
+					</div>
+					<button type="submit" class="btn btn-primary">Add</button>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

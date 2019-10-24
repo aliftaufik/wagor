@@ -16,7 +16,7 @@ app.use(
 // for testing
 app.use((req, res, next) => {
 	req.session.User = {
-		id: 2,
+		id: 1,
 		username: 'alif'
 	};
 	next();

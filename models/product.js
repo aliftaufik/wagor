@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 				}, [])
 				.reverse()
 				.join('');
-			console.log(strPrice);
 			return `Rp. ${strPrice},00`;
 		}
 	}

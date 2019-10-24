@@ -20,7 +20,7 @@ module.exports = {
 				unique: true
 			},
 			balance: {
-				type: Sequelize.STRING
+				type: Sequelize.INTEGER
 			},
 			role: {
 				type: Sequelize.STRING

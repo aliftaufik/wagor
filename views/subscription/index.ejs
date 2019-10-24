@@ -65,5 +65,42 @@
 				</form>
 			</div>
 		</div>
+
+		<div class="table table-striped" style="width: 60%; margin: 0% auto;">
+			<table>
+				<tr>
+					<th>Here are all the data from your subscriptions : </th>
+				</tr>
+			</table>
+			<%for (let i = 0; i<User.Subscriptions.length; i++) {%>
+			<table style="margin-top : 20px;">
+				<tr>
+					<th>Subscriptions ID</th>
+					<th>:</th>
+					<th><%= User.Subscriptions[i].id%></th>
+				</tr>
+				<tr>
+					<th>Total Price</th>
+					<th>:</th>
+					<th><%= User.Subscriptions[i].totalPrice%></th>
+				</tr>
+				<tr>
+					<th>Daily Allocations</th>
+					<th>:</th>
+					<th><%= User.Subscriptions[i].dailyAllocation%></th>
+				</tr>
+				<tr>
+					<th>Start Date</th>
+					<th>:</th>
+					<th><%= User.Subscriptions[i].startDate%></th>
+				</tr>
+				<tr>
+					<th>End Date</th>
+					<th>:</th>
+					<th><%= User.Subscriptions[i].endDate%></th>
+				</tr>
+			</table>
+			<%}%>
+				</div>
 	</body>
 </html>

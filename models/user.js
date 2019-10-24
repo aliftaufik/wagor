@@ -1,7 +1,21 @@
 'use strict';
 const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
-	class User extends sequelize.Sequelize.Model {}
+	class User extends sequelize.Sequelize.Model {
+		get balanceInRp() {
+			const strBalance = String(this.balance)
+				.split('')
+				.reverse()
+				.reduce((arr, char, index) => {
+					if (index % 3 == 0 && index != 0) arr.push('.');
+					arr.push(char);
+					return arr;
+				}, [])
+				.reverse()
+				.join('');
+			return `Rp. ${strBalance},00`;
+		}
+	}
 	User.init(
 		{
 			username: {

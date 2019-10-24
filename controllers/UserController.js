@@ -49,7 +49,7 @@ class UserController {
 
 	static getUserBalance(req, res) {
 		const data = {};
-		models.User.findByPk(req.session.User.id)
+		models.User.findByPk(req.session.User.id, { include: models.Personal })
 			.then(user => {
 				data.User = user;
 				res.render('user/balance', data);
@@ -60,7 +60,13 @@ class UserController {
 	}
 
 	static postUserBalance(req, res) {
-		models.User.update({ balance: req.body.balance }, { where: { id: req.session.User.id } })
+		models.User.findByPk(req.session.User.id)
+			.then(user => {
+				return models.User.update(
+					{ balance: user.balance + Number(req.body.balance) },
+					{ where: { id: req.session.User.id } }
+				);
+			})
 			.then(count => {
 				res.redirect(`${req.baseUrl}`); // biar bisa langsung balik ke Cart atau ke Subscription atau ke user
 			})

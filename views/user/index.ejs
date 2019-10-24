@@ -5,12 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<%- include('../partials/bootstrapCDN') %>
-		<title>Document</title>
-		<style>
-		</style>
+		<title>User Detail</title>
+		<style></style>
 	</head>
 	<body>
-		<%- include('../partials/navbar', {title: 'User', User})%>
+		<%- include('../partials/navbar', {title: 'User'})%>
 
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
@@ -19,72 +18,73 @@
 
 				<small
 					>Your personal data is not completed yet.
-					<a href="/<%= User.id %>/user/edit">Complete it now.</a></small>
+					<a href="/<%= User.id %>/user/edit">Complete it now.</a></small
+				>
 
-				<% } %>				
+				<% } %>
 			</div>
 		</div>
 
-		<div class="table table-dark" style="width: 60%; margin: 0% auto;">			
-			<table>
-				<tr>
-					<th>Name</th>
-					<th> : </th>
-					<th><%= User.Personal.fullName%></th>
-				</tr>
-				<tr>
-					<th>Email</th>
-					<th>:</th>
-					<th><%= User.email%></th>
-				</tr>
-				<tr>
-					<th>Phone</th>
-					<th>:</th>
-					<th><%= User.Personal.phone%></th>
-				</tr>
-				<tr>
-					<th>Address</th>
-					<th>:</th>
-					<th><%= User.Personal.address%></th>
-				</tr>					
-			</table>	
-		</div>
+		<div class="container">
+			<div class="row" style="width: 50vw;">
+				<div class="col-10">
+					<h2>Your Personal Data</h2>
+				</div>
+				<div class="col-2 float-right">
+					<a href="/user/edit" class="btn btn-primary">Edit</a>
+				</div>
+				<table class="table table-dark">
+					<tr>
+						<% if (!User.Personal || !User.Personal.fullName) { %>
 
-		<div class="table table-striped" style="width: 60%; margin: 0% auto;">
-			<table>
-				<tr>
-					<th>Here are all the data from your subscriptions : </th>
-				</tr>
-			</table>
-			<%for (let i = 0; i<User.Subscriptions.length; i++) {%>
-				<table style="margin-top : 20px;">
-					<tr>
-						<th>Subscriptions ID</th>
+						<th>Username</th>
 						<th>:</th>
-						<th><%= User.Subscriptions[i].id%></th>
+						<td><%= User.username %></td>
+
+						<% } else { %>
+
+						<th>Full Name</th>
+						<th>:</th>
+						<td><%= User.Personal.fullName %></td>
+
+						<% } %>
 					</tr>
 					<tr>
-						<th>Total Price</th>
+						<th>Email</th>
 						<th>:</th>
-						<th><%= User.Subscriptions[i].totalPrice%></th>
+						<td><%= User.email || '' %></td>
+						<td></td>
 					</tr>
 					<tr>
-						<th>Daily Allocations</th>
+						<th>Phone Number</th>
 						<th>:</th>
-						<th><%= User.Subscriptions[i].dailyAllocation%></th>
+						<td><%= User.Personal ? User.Personal.phone || '' : '' %></td>
+						<td></td>
 					</tr>
 					<tr>
-						<th>Start Date</th>
+						<th>Address</th>
 						<th>:</th>
-						<th><%= User.Subscriptions[i].startDate%></th>
+						<td><%= User.Personal ? User.Personal.address || '' : '' %></td>
+						<td></td>
 					</tr>
 					<tr>
-						<th>End Date</th>
+						<th>Balance</th>
 						<th>:</th>
-						<th><%= User.Subscriptions[i].endDate%></th>
+						<td><%= User.balance %></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Subscription(s)</th>
+						<th>:</th>
+						<td><%= User.Subscriptions.length %></td>
+						<td>
+							<a href="/subscription"
+								><%= User.Subscriptions.length > 0 ? 'View Subscriptions' : 'Subscribe' %></a
+							>
+						</td>
 					</tr>
 				</table>
-			<%}%>
+			</div>
 		</div>
 	</body>
 </html>
