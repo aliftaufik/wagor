@@ -12,7 +12,26 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			}
 		},
-		{ sequelize, modelName: 'Transaction' }
+		{
+			hooks: {
+				afterCreate: (transaction, options) => {
+					sequelize.models.User.findByPk(transaction.UserId).then(user => {
+						sequelize.models.User.Update(
+							{
+								balance: user.balance - transaction.totalPrice
+							},
+							{
+								where: {
+									id: user.id
+								}
+							}
+						);
+					});
+				}
+			},
+			sequelize,
+			modelName: 'Transaction'
+		}
 	);
 	Transaction.associate = function(models) {
 		Transaction.belongsTo(models.User);

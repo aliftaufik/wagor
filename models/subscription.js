@@ -1,6 +1,12 @@
 'use strict';
+const helpers = require('../helpers');
 module.exports = (sequelize, DataTypes) => {
-	class Subscription extends sequelize.Sequelize.Model {}
+	class Subscription extends sequelize.Sequelize.Model {
+		expiring() {
+			const remaining = helpers.convertMsToDays(new Date(this.endDate) - new Date(this.startDate));
+			return remaining == 0 ? 'Expired' : remaining + ` day${remaining > 1 ? 's' : ''}`;
+		}
+	}
 	Subscription.init(
 		{
 			UserId: {
@@ -25,7 +31,26 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			}
 		},
-		{ sequelize, modelName: 'Subscription' }
+		{
+			hooks: {
+				afterCreate: (subscription, options) => {
+					sequelize.models.User.findByPk(subscription.UserId).then(user => {
+						sequelize.models.User.Update(
+							{
+								balance: user.balance - subscription.totalPrice
+							},
+							{
+								where: {
+									id: user.id
+								}
+							}
+						);
+					});
+				}
+			},
+			sequelize,
+			modelName: 'Subscription'
+		}
 	);
 	Subscription.associate = function(models) {
 		Subscription.belongsTo(models.User);

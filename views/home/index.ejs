@@ -30,20 +30,22 @@
 
 		<div class="container">
 			<div class="row justify-content-center">
-				<form action="" method="post" class="con-12"></form>
-				<% for (const product of Products) { %>
+				<form action="" method="post" class="col-12">
+					<% for (const product of Products) { %>
 
-				<div class="col-md-3 form-group text-center">
-					<img src="https://thumb.viva.co.id/media/frontend/thumbs3/2018/05/23/5b054091ec55f-cabe-rawit-dan-gorengan_665_374.jpg" alt="<%= product.productName %>" class="mx-auto d-block" />
-					<label for="<%= product.productName %>"><%= product.productName %></label>
-					<div>
-						<button class="btn btn-primary btn-sm">-</button>
-						<span id="<%= product.id %>">0</span>
-						<button class="btn btn-primary btn-sm">+</button>
+					<div class="col-md-3 form-group text-center">
+						<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
+						<label for="<%= product.productName %>"><%= product.productName %></label>
+						<div>
+							<button class="btn btn-primary btn-sm">-</button>
+							<span id="<%= product.id %>">0</span>
+							<button class="btn btn-primary btn-sm">+</button>
+						</div>
+            
 					</div>
-				</div>
 
-				<% } %>
+					<% } %>
+				</form>
 			</div>
 		</div>
 	</body>
