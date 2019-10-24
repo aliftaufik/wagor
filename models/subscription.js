@@ -1,6 +1,12 @@
 'use strict';
+const helpers = require('../helpers');
 module.exports = (sequelize, DataTypes) => {
-	class Subscription extends sequelize.Sequelize.Model {}
+	class Subscription extends sequelize.Sequelize.Model {
+		expiring() {
+			const remaining = helpers.convertMsToDays(new Date(this.endDate) - new Date(this.startDate));
+			return remaining == 0 ? 'Expired' : remaining + ` day${remaining > 1 ? 's' : ''}`;
+		}
+	}
 	Subscription.init(
 		{
 			UserId: {
