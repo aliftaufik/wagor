@@ -10,14 +10,16 @@
 	<body>
 		<%- include('../partials/navbar', { title: 'Subscription', User })%>
 
-		<div class="container">
-			<h1>Subscription</h1>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1>Subscription</h1>
+			</div>
 		</div>
 
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h2>Your Subscriptions</h2>
+					<h3>Your Subscriptions</h3>
 				</div>
 				<div class="col-12">
 					<table class="table table-striped">
@@ -30,16 +32,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for (let i = 0; i < 3; i++) { if (!User.Subscriptions[i]) { break } %>
+							<% let count = 0 %> <% for (const sub of User.Subscriptions) { %> <% if (!sub) break
+							%> <% if (sub.expiring() == 'Expired') continue %>
 
 							<tr>
-								<td><%= i + 1 %></td>
-								<td><%= User.Subscriptions[i].startDate %></td>
-								<td><%= User.Subscriptions[i].expiring() %></td>
-								<td><%= User.Subscriptions[i].totalPrice %></td>
+								<td><%= count + 1 %></td>
+								<td><%= sub.startDate %></td>
+								<td><%= sub.expiring() %></td>
+								<td><%= helpers.convertToRp(sub.totalPrice) %></td>
 							</tr>
 
-							<% } %>
+							<% count++ %> <% } %>
 						</tbody>
 					</table>
 				</div>
@@ -47,60 +50,63 @@
 		</div>
 
 		<div class="container">
-			<div class="row justify-content-center">
-				<form action="" method="post" class="col-12">
-					<% for (const product of Products) { %>
-
-					<div class="col-md-3 form-group text-center">
-						<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
-						<label for="<%= product.productName %>"><%= product.productName %></label>
-						<div>
-							<button class="btn btn-primary btn-sm">-</button>
-							<span id="<%= product.id %>">0</span>
-							<button class="btn btn-primary btn-sm">+</button>
+			<form action="" method="post" class="row justify-content-center">
+				<h3 class="col-12 text-center">Add New Subscription</h3>
+				<div class="col-8">
+					<div class="form-row">
+						<div class="form-group col-4">
+							<label for="totalPrice">Subscription Amount : </label>
+							<input type="number" class="form-control" name="totalPrice" id="totalPrice" />
+						</div>
+						<div class="form-check form-check-inline col">
+							<input name="expire" class="form-check-input" type="checkbox" id="radio1" value="7" />
+							<label class="form-check-label" for="radio1">1 week</label>
+						</div>
+						<div class="form-check form-check-inline col">
+							<input
+								name="expire"
+								class="form-check-input"
+								type="checkbox"
+								id="radio2"
+								value="14"
+							/>
+							<label class="form-check-label" for="radio2">2 weeks</label>
+						</div>
+						<div class="form-check form-check-inline col">
+							<input
+								name="expire"
+								class="form-check-input"
+								type="checkbox"
+								id="radio3"
+								value="30"
+							/>
+							<label class="form-check-label" for="radio3">1 month</label>
 						</div>
 					</div>
-
-					<% } %>
-				</form>
-			</div>
-		</div>
-
-		<div class="table table-striped" style="width: 60%; margin: 0% auto;">
-			<table>
-				<tr>
-					<th>Here are all the data from your subscriptions : </th>
-				</tr>
-			</table>
-			<%for (let i = 0; i<User.Subscriptions.length; i++) {%>
-			<table style="margin-top : 20px;">
-				<tr>
-					<th>Subscriptions ID</th>
-					<th>:</th>
-					<th><%= User.Subscriptions[i].id%></th>
-				</tr>
-				<tr>
-					<th>Total Price</th>
-					<th>:</th>
-					<th><%= User.Subscriptions[i].totalPrice%></th>
-				</tr>
-				<tr>
-					<th>Daily Allocations</th>
-					<th>:</th>
-					<th><%= User.Subscriptions[i].dailyAllocation%></th>
-				</tr>
-				<tr>
-					<th>Start Date</th>
-					<th>:</th>
-					<th><%= User.Subscriptions[i].startDate%></th>
-				</tr>
-				<tr>
-					<th>End Date</th>
-					<th>:</th>
-					<th><%= User.Subscriptions[i].endDate%></th>
-				</tr>
-			</table>
-			<%}%>
 				</div>
+				<div class="col-12">
+					<div class="row justify-content-center">
+						<% for (const product of Products) { %>
+
+						<div class="card col-3 m-1">
+							<img
+								src="https://cdn2.tstatic.net/bangka/foto/bank/images/sajian-tahu-goreng-tepung-ketumbar.jpg"
+								class="card-img-top"
+								alt="..."
+							/>
+							<div class="card-body">
+								<h5 class="card-title"><%= product.productName %></h5>
+								<div class="form-group">
+									<label for="amount">Price: <%= product.priceInRp %></label>
+									<input type="number" name="amount" id="amount" value="0" />
+								</div>
+							</div>
+						</div>
+
+						<% } %>
+					</div>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

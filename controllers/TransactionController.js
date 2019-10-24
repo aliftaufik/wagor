@@ -1,4 +1,5 @@
 const models = require('../models');
+const helpers = require('../helpers');
 
 class TransactionController {
 	static getCart(req, res) {
@@ -39,12 +40,12 @@ class TransactionController {
 
 	static getSubscription(req, res) {
 		const data = {};
+		data.helpers = helpers;
 		models.User.findByPk(req.session.User.id, {
 			include: models.Subscription,
 			order: [[models.Subscription, 'endDate']]
 		})
 			.then(user => {
-				// console.log(user);
 				data.User = user;
 				return models.Product.findAll();
 			})
