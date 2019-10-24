@@ -50,11 +50,9 @@ class TransactionController {
 			})
 			.then(products => {
 				data.Products = products;
-				console.log(data.User.Subscriptions[0]);
 				res.render('subscription', data);
 			})
 			.catch(err => {
-				console.log(err);
 				res.send(err);
 			});
 	}

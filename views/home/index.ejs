@@ -23,28 +23,42 @@
 	</head>
 	<body>
 		<%- include('../partials/navbar', {title: 'Home', User}) %>
-		<div class="header">
-			<h1>WAGOR</h1>
-			<h6>Waroeng Gorengan Online Pertama di Indonesia</h6>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container text-center">
+				<h1>WAGOR</h1>
+				<h6>Waroeng Gorengan Online Pertama di Indonesia</h6>
+			</div>
 		</div>
 
 		<div class="container">
 			<form action="" method="post" class="row justify-content-center">
 				<% for (const product of Products) { %>
 
-				<div class="col-md-3 form-group text-center" style="border: 1px solid black;">
-					<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
-					<label for="<%= product.productName %>"><%= product.productName %></label>
-					<div>
-						<button class="btn btn-primary btn-sm">-</button>
-						<span id="<%= product.id %>">0</span>
-						<button class="btn btn-primary btn-sm">+</button>
+				<div class="card col-3 m-1">
+					<img
+						src="https://cdn2.tstatic.net/bangka/foto/bank/images/sajian-tahu-goreng-tepung-ketumbar.jpg"
+						class="card-img-top"
+						alt="..."
+					/>
+					<div class="card-body">
+						<h5 class="card-title"><%= product.productName %></h5>
+						<div class="form-group">
+							<label for="amount">Price: <%= product.priceInRp %></label>
+							<input type="number" name="amount" id="amount" value="0" />
+							<!-- <p class="card-text">
+								This is a wider card with supporting text below as a natural lead-in to additional
+								content. This content is a little bit longer.
+							</p> -->
+							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+						</div>
 					</div>
 				</div>
 
 				<% } %>
 			</form>
 		</div>
-		
+		<div style="position: fixed; right: 5vw; bottom: 2vh;">
+			<a href="/cart" class="btn btn-primary btn-lg">Cart</a>
+		</div>
 	</body>
 </html>

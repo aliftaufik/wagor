@@ -39,7 +39,10 @@ class HomeController {
 	// Home setelah user login
 	static getHomeIn(req, res) {
 		const data = {};
-		models.User.findByPk(req.session.User.id, { include: models.Transaction })
+		models.User.findByPk(req.session.User.id, {
+			include: models.Transaction,
+			order: [[models.Transaction, 'createdAt', 'DESC']]
+		})
 			.then(user => {
 				data.User = user;
 				return models.Product.findAll();

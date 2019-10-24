@@ -4,22 +4,67 @@ module.exports = {
 	up: (queryInterface, Sequelize) => {
 		return queryInterface.bulkInsert('Products', [
 			{
-				id: 1,
 				productName: 'Bakwan',
 				price: 1000,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			},
 			{
-				id: 2,
 				productName: 'Bakwan2',
 				price: 2000,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			},
 			{
-				id: 3,
 				productName: 'Bakwan3',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan4',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan5',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan6',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan7',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan8',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan9',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan10',
+				price: 3000,
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				productName: 'Bakwan11',
 				price: 3000,
 				createdAt: new Date(),
 				updatedAt: new Date()

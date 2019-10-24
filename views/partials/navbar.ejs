@@ -2,7 +2,7 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item <%= title === 'Home' ? 'active' : '' %>">
-				<a class="nav-link" href="#">WAGOR<span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="/">WAGOR<span class="sr-only">(current)</span></a>
 			</li>
 
 			<li class="nav-item dropdown <%= title === 'User' ? 'active' : '' %>">
@@ -19,37 +19,19 @@
 				</a>
 
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="/<%= User.id %>/user">View User</a>
+					<a class="dropdown-item" href="/user">View User</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item disabled" href="#">Balance: <%= User.balance %></a>
-					<a class="dropdown-item" href="/<%= User.id %>/user/balance">Add Balance</a>
+					<a class="dropdown-item" href="/user/balance">Add Balance</a>
 				</div>
 			</li>
 
 			<li class="nav-item <%= title === 'Cart' ? 'active' : '' %>">
-				<a class="nav-link" href="/<%= User.id %>/cart">Cart</a>
+				<a class="nav-link" href="/cart">Cart</a>
 			</li>
 
 			<li class="nav-item <%= title === 'Subscription' ? 'active' : '' %>">
-				<a href="/<%= User.id %>/subscription" class="nav-link">Subscription</a>
-			</li>
-
-			<li class="nav-item dropdown <%= title === 'Subscription' ? 'active' : '' %>">
-				<a
-					class="nav-link dropdown-toggle"
-					href="#"
-					id="navbarDropdown"
-					role="button"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="false"
-				>
-					Subscription
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Add Subscription</a>
-					<a class="dropdown-item" href="#">Change Subscription</a>
-				</div>
+				<a href="/subscription" class="nav-link">Subscription</a>
 			</li>
 		</ul>
 	</div>
