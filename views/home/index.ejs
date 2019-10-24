@@ -29,24 +29,21 @@
 		</div>
 
 		<div class="container">
-			<div class="row justify-content-center">
-				<form action="" method="post" class="col-12">
-					<% for (const product of Products) { %>
+			<form action="" method="post" class="row justify-content-center">
+				<% for (const product of Products) { %>
 
-					<div class="col-md-3 form-group text-center">
-						<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
-						<label for="<%= product.productName %>"><%= product.productName %></label>
-						<div>
-							<button class="btn btn-primary btn-sm">-</button>
-							<span id="<%= product.id %>">0</span>
-							<button class="btn btn-primary btn-sm">+</button>
-						</div>
-            
+				<div class="col-md-3 form-group text-center">
+					<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
+					<label for="<%= product.productName %>"><%= product.productName %></label>
+					<div>
+						<button class="btn btn-primary btn-sm">-</button>
+						<span id="<%= product.id %>">0</span>
+						<button class="btn btn-primary btn-sm">+</button>
 					</div>
+				</div>
 
-					<% } %>
-				</form>
-			</div>
+				<% } %>
+			</form>
 		</div>
 	</body>
 </html>
