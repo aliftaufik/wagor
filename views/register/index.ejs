@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<%- include('../partials/bootstrapCDN') %>
+		<title>Register</title>
+	</head>
+	<body>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1>Register New User</h1>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<form>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="username">Username</label>
+							<input type="text" class="form-control" name="username" placeholder="username" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" name="email" placeholder="email" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="pasword">Password</label>
+							<input type="password" class="form-control" name="pasword" placeholder="password" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="confirm-pasword">Confirmed Password</label>
+							<input
+								type="password"
+								class="form-control"
+								name="confirm-pasword"
+								placeholder="confirm password"
+							/>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="fullName">Full Name</label>
+							<input type="text" class="form-control" name="fullName" placeholder="Full Name" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="phoneNumber">Phone Number</label>
+							<input
+								type="text"
+								class="form-control"
+								name="phoneNumber"
+								placeholder="Phone Number"
+							/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">Full Address</label>
+						<textarea
+							class="form-control"
+							name="address"
+							rows="3"
+							placeholder="Jalan Plesiran Taman Sari Bandung"
+						></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Sign in</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
