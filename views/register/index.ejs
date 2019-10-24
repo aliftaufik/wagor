@@ -8,6 +8,8 @@
 		<title>Register</title>
 	</head>
 	<body>
+		<%- include('../partials/navbar-off', { title: 'Register' }) %>
+
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h1>Register New User</h1>
@@ -15,58 +17,50 @@
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<form>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="username">Username</label>
-							<input type="text" class="form-control" name="username" placeholder="username" />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="email">Email</label>
-							<input type="email" class="form-control" name="email" placeholder="email" />
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="pasword">Password</label>
-							<input type="password" class="form-control" name="pasword" placeholder="password" />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="confirm-pasword">Confirmed Password</label>
-							<input
-								type="password"
-								class="form-control"
-								name="confirm-pasword"
-								placeholder="confirm password"
-							/>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="fullName">Full Name</label>
-							<input type="text" class="form-control" name="fullName" placeholder="Full Name" />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="phoneNumber">Phone Number</label>
+			<div class="row justify-content-center">
+				<form action="" method="post" class="col-6">
+					<div class="form-group row">
+						<label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+						<div class="col-sm-10">
 							<input
 								type="text"
+								name="username"
 								class="form-control"
-								name="phoneNumber"
-								placeholder="Phone Number"
+								id="inputEmail3"
+								placeholder="Email"
 							/>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Full Address</label>
-						<textarea
-							class="form-control"
-							name="address"
-							rows="3"
-							placeholder="Jalan Plesiran Taman Sari Bandung"
-						></textarea>
+					<div class="form-group row">
+						<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+						<div class="col-sm-10">
+							<input
+								type="password"
+								name="password"
+								class="form-control"
+								id="inputPassword3"
+								placeholder="Password"
+							/>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-primary">Sign in</button>
+					<div class="form-group row">
+						<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+						<div class="col-sm-10">
+							<input
+								type="email"
+								name="email"
+								class="form-control"
+								id="inputEmail3"
+								placeholder="Email"
+							/>
+						</div>
+					</div>
+
+					<div class="form-group row justify-content-end">
+						<div class="col text-right">
+							<button type="submit" class="btn btn-primary">Register</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

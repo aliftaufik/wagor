@@ -8,17 +8,18 @@ class HomeController {
 
 	static postLogin(req, res) {
 		models.User.findOne({ where: { username: req.body.username } }).then(user => {
-			// return bcrypt.compare(req.body.password, hash);
-			if (user.password == req.body.password) {
-				req.session.User = {
-					id: 1,
-					username: 'aliftaufik'
-				};
-				res.redirect('/');
-			} else {
-				req.session.Err = [{ message: 'Wrong email/password' }];
-				res.redirect('/login');
-			}
+			bcrypt.compare(req.body.password, user.password).then(auth => {
+				if (auth) {
+					req.session.User = {
+						id: user.id,
+						username: user.username
+					};
+					res.redirect('/');
+				} else {
+					req.session.Err = [{ message: 'Wrong email/password' }];
+					res.redirect('/login');
+				}
+			});
 		});
 	}
 

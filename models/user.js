@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
 	class User extends sequelize.Sequelize.Model {}
 	User.init(
@@ -42,7 +43,22 @@ module.exports = (sequelize, DataTypes) => {
 				}
 			}
 		},
-		{ sequelize, modelName: 'User' }
+		{
+			hooks: {
+				beforeCreate: (user, options) => {
+					return bcrypt
+						.genSalt(10)
+						.then(salt => {
+							return bcrypt.hash(user.password, salt);
+						})
+						.then(hash => {
+							user.password = hash;
+						});
+				}
+			},
+			sequelize,
+			modelName: 'User'
+		}
 	);
 	User.associate = function(models) {
 		User.hasMany(models.Subscription);
