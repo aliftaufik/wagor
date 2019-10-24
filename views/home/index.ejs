@@ -29,24 +29,21 @@
 		</div>
 
 		<div class="container">
-				<%for (let i = 0; i<Products.length; i++) {%>
-						<div class="card-deck">
-						<%for (let j=i; j<i+3; j++) {%>
-							<div class="card">
-								<img class="card-img-top" src="https://cdn2.tstatic.net/bangka/foto/bank/images/sajian-tahu-goreng-tepung-ketumbar.jpg" alt="Card image cap">
-								<div class="text-center">
-									<button class="btn btn-primary btn-sm">-</button>
-									<span id="">0</span>
-									<button class="btn btn-primary btn-sm">+</button>
-								</div>
-								<div class="card-body">
-									<h5 class="card-title"><%= Products[i].productName %></h5>
-								  </div>
-							</div>							
-							<%}%>	
-						<%i = i + 2%>		
-						</div>
-					<%}%>	
+			<form action="" method="post" class="row justify-content-center">
+				<% for (const product of Products) { %>
+
+				<div class="col-md-3 form-group text-center" style="border: 1px solid black;">
+					<img src="#" alt="<%= product.productName %>" class="mx-auto d-block" />
+					<label for="<%= product.productName %>"><%= product.productName %></label>
+					<div>
+						<button class="btn btn-primary btn-sm">-</button>
+						<span id="<%= product.id %>">0</span>
+						<button class="btn btn-primary btn-sm">+</button>
+					</div>
+				</div>
+
+				<% } %>
+			</form>
 		</div>
 		
 	</body>
