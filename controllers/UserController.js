@@ -14,7 +14,7 @@ class UserController {
 		models.User.findByPk(req.params.id, { include: [models.Personal, models.Subscription] }).then(
 			user => {
 				data.User = user;
-				console.log(data);
+				console.log(data.User.Subscriptions[0]);
 				res.render('user', data);
 			}
 		);

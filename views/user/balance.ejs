@@ -10,5 +10,27 @@
 
 	<body>
 		<%- include('../partials/navbar', {title: 'User', User}) %>
+
+		<section class="container ml-0">
+			<h1>Detail Saldo</h1>
+			<table>
+				<tr>
+					<th>Total Saldo</th>
+				</tr>
+				<tr>				
+					<td><%= User.balance%></td>
+				</tr>
+			</table>
+		</section>
+
+		<section class="container ml-0">
+			<form>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Please Enter Nominal</label>
+					<input type="number" name="" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Nominal">
+				</div>				
+				<button type="submit" class="btn btn-primary">Add</button>
+			</form>
+		</section>
 	</body>
 </html>
