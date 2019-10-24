@@ -1,0 +1,54 @@
+[
+    
+    {
+        "productName" : "Pisang Goreng",
+        "price" : 2500,
+        "imageAddress" : "https://awsimages.detik.net.id/community/media/visual/2019/05/16/f7242836-7f49-4199-b0bb-a38d14b848de.jpeg?w=780&q=60" 
+    },
+    {
+        "productName" : "Tempe Mendoan",
+        "price" : 3500,
+        "imageAddress" : "https://cdn1-production-images-kly.akamaized.net/cosja2pOZpN51jctmmQhZ-W6S-Y=/640x480/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1044530/original/083463100_1446701764-20151105-Tempe-Mendoan.jpg" 
+    },
+    {
+        "productName" : "Singkong Goreng",
+        "price" : 5500,
+        "imageAddress" : "https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/2018/06/11/3094915046.jpg" 
+    },
+    {
+        "productName" : "Molen",
+        "price" : 2500,
+        "imageAddress" : "http://kabardunia.com/wp-content/uploads2/2015/01/Resep-Pisang-Molen-Goreng-Renyah.jpg" 
+    },
+    {
+        "productName" : "Cireng",
+        "price" : 2500,
+        "imageAddress" : "https://cdns.klimg.com/merdeka.com/i/w/news/2017/09/06/883874/670x335/resep-dan-cara-membuat-cireng-yang-enak-dan-sederhana-dengan-isian-praktis-nan-lezat.jpg" 
+    },
+    {
+        "productName" : "Bakwan Jagung",
+        "price" : 2000,
+        "imageAddress" : "https://img-z.okeinfo.net/library/images/2018/12/04/9d5ys0x4xm4tzuhh2gkl_22013.jpg" 
+    },
+    {
+        "productName" : "Tahu Pong",
+        "price" : 3500,
+        "imageAddress" : "http://www.pengusahasukses.com/wp-content/uploads/2016/06/Tahu-pong-pengusahasukses.jpg" 
+    },
+    {
+        "productName" : "Peyek",
+        "price" : 5000,
+        "imageAddress" : "https://cdn.idntimes.com/content-images/post/20190711/nengwidalicious-be8316b4df31f7b19b67684484f6920e.jpg" 
+    },
+    {
+        "productName" : "Combro",
+        "price" : 2000,
+        "imageAddress" : "https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/sasefoto/original/27872_empat-langkah-mudah-membuat-combro-singkong-kukus.jpg" 
+    },
+    {
+        "productName" : "Misro",
+        "price" : 2500,
+        "imageAddress" : "https://1.bp.blogspot.com/-8VawxtcqbBY/XO-QnpA0UzI/AAAAAAAACOM/CZauPpP2CJg5YVW2rr30aCqw60jHOX_AwCLcBGAs/s1600/IMG_20190530_150944.jpg" 
+    }
+    
+]

@@ -27,7 +27,6 @@ class HomeController {
 				res.render('home', data);
 			})
 			.catch(err => {
-				console.log(err);
 				res.send(err);
 			});
 	}
