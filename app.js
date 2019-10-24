@@ -13,13 +13,6 @@ app.use(
 	})
 );
 
-app.use((req, res, next) => {
-	req.session.User = {
-		id: 1,
-		username: 'aliftaufik'
-	};
-	next();
-});
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use('/', routes);
