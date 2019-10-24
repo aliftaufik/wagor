@@ -3,8 +3,8 @@ const models = require('../models');
 class TransactionController {
 	static getCart(req, res) {
 		const data = {};
-		data.order = req.body.products;
-		models.User.findByPk(req.params.id).then(user => {
+		data.Order = req.body.order;
+		models.User.findByPk(req.session.User.id).then(user => {
 			data.User = user;
 			res.render('cart', data);
 		});
@@ -12,14 +12,14 @@ class TransactionController {
 
 	static postCart(req, res) {
 		const transactionParams = {
-			UserId: req.body.userId,
+			UserId: req.session.User.id,
 			totalPrice: req.body.totalPrice
 		};
 
 		models.Transaction.create(transactionParams)
 			.then(trans => {
 				const transProductPromises = [];
-				for (const product of req.body.products) {
+				for (const product of req.body.order) {
 					const transProductParams = {
 						TransactionId: trans.id,
 						ProductId: product.id,
@@ -30,11 +30,6 @@ class TransactionController {
 				return Promise.all(transProductPromises);
 			})
 			.then(transProducts => {
-				const balanceValue = { balance: req.body.initBal - req.body.totalPrice };
-				const balanceParams = { where: { id: req.body.userId } };
-				return models.User.update(balanceValue, balanceParams);
-			})
-			.then(count => {
 				res.redirect('/');
 			})
 			.catcth(err => {
@@ -44,7 +39,7 @@ class TransactionController {
 
 	static getSubscription(req, res) {
 		const data = {};
-		models.User.findByPk(req.params.id, { include: models.Subscription })
+		models.User.findByPk(req.session.User.id, { include: models.Subscription })
 			.then(user => {
 				data.User = user;
 				return models.Product.findAll();
@@ -68,7 +63,6 @@ class TransactionController {
 		};
 
 		// bikin Subscription baru, kalo sukses bikin SubscriptionProduct buat tiap produk yang dibeli.
-		// Setelah sukses semua baru update balance-nya User.
 		models.Subscription.create(subscriptionParams)
 			.then(sub => {
 				const subProductPromises = [];
@@ -83,11 +77,6 @@ class TransactionController {
 				return Promise.all(subProductPromises);
 			})
 			.then(subProducts => {
-				const balanceValue = { balance: req.body.initBal - req.body.totalPrice };
-				const balanceParams = { where: { id: req.body.userId } };
-				return models.User.update(balanceValue, balanceParams);
-			})
-			.then(count => {
 				res.redirect('/');
 			})
 			.catcth(err => {

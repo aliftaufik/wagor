@@ -8,8 +8,12 @@ class HomeController {
 
 	// Home setelah user login
 	static getHomeIn(req, res) {
-		const data = {};
-		models.User.findByPk(req.params.id, { include: models.Transaction })
+		models.User.findByPk({
+			where: {
+				username: req.session.User.id
+			},
+			include: models.Transaction
+		})
 			.then(user => {
 				data.User = user;
 				return models.Product.findAll();

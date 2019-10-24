@@ -6,23 +6,28 @@ class UserController {
 	}
 
 	static postRegister(req, res) {
-		res.redirect('/');
+		models.User.create(req.body).then(user => {
+			req.session.User = {
+				id: user.id,
+				username: user.username
+			};
+			res.redirect('/user/edit');
+		});
 	}
 
 	static getUser(req, res) {
 		const data = {};
-		models.User.findByPk(req.params.id, { include: [models.Personal, models.Subscription] }).then(
-			user => {
-				data.User = user;
-				console.log(data);
-				res.render('user', data);
-			}
-		);
+		models.User.findByPk(req.session.User.id, {
+			include: [models.Personal, models.Subscription]
+		}).then(user => {
+			data.User = user;
+			res.render('user', data);
+		});
 	}
 
 	static getUserEdit(req, res) {
 		const data = {};
-		models.User.findByPk(req.params.id, { include: models.Personal })
+		models.User.findByPk(req.session.User.id, { include: models.Personal })
 			.then(user => {
 				data.User = user;
 				res.render('user/edit', data);
@@ -32,9 +37,8 @@ class UserController {
 			});
 	}
 
-	// This method still broken, because User and Personal are different tables
 	static postUserEdit(req, res) {
-		models.User.update(req.body, { where: { id: req.params.id } })
+		models.Personal.update(req.body, { where: { UserId: req.session.User.id } })
 			.then(count => {
 				res.redirect(`${req.baseUrl}`); // biar bisa langsung balik ke Cart atau ke Subscription atau ke user
 			})
@@ -45,7 +49,7 @@ class UserController {
 
 	static getUserBalance(req, res) {
 		const data = {};
-		models.User.findByPk(req.params.id)
+		models.User.findByPk(req.session.User.id)
 			.then(user => {
 				data.User = user;
 				res.render('user/balance', data);
@@ -56,7 +60,7 @@ class UserController {
 	}
 
 	static postUserBalance(req, res) {
-		models.User.update({ balance: req.body.balance }, { where: { id: req.params.id } })
+		models.User.update({ balance: req.body.balance }, { where: { id: req.session.User.id } })
 			.then(count => {
 				res.redirect(`${req.baseUrl}`); // biar bisa langsung balik ke Cart atau ke Subscription atau ke user
 			})
