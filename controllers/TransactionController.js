@@ -39,16 +39,22 @@ class TransactionController {
 
 	static getSubscription(req, res) {
 		const data = {};
-		models.User.findByPk(req.session.User.id, { include: models.Subscription })
+		models.User.findByPk(req.session.User.id, {
+			include: models.Subscription,
+			order: [[models.Subscription, 'endDate']]
+		})
 			.then(user => {
+				// console.log(user);
 				data.User = user;
 				return models.Product.findAll();
 			})
 			.then(products => {
 				data.Products = products;
+				console.log(data.User.Subscriptions[0]);
 				res.render('subscription', data);
 			})
 			.catch(err => {
+				console.log(err);
 				res.send(err);
 			});
 	}

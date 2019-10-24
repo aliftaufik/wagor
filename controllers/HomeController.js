@@ -1,19 +1,23 @@
 const models = require('../models');
 
 class HomeController {
-	// Home sebelum user login
 	static getHome(req, res) {
+		if (req.session.User) {
+			HomeController.getHomeIn(req, res);
+		} else {
+			HomeController.getHomeNew(req, res);
+		}
+	}
+
+	// Home sebelum user login
+	static getHomeNew(req, res) {
 		res.render('');
 	}
 
 	// Home setelah user login
 	static getHomeIn(req, res) {
-		models.User.findByPk({
-			where: {
-				username: req.session.User.id
-			},
-			include: models.Transaction
-		})
+		const data = {};
+		models.User.findByPk(req.session.User.id, { include: models.Transaction })
 			.then(user => {
 				data.User = user;
 				return models.Product.findAll();
@@ -23,6 +27,7 @@ class HomeController {
 				res.render('home', data);
 			})
 			.catch(err => {
+				console.log(err);
 				res.send(err);
 			});
 	}
