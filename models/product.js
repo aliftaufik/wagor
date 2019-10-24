@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 			price: {
 				type: DataTypes.INTEGER,
 				allowNull: { args: false, msg: 'Price cannot be empty.' }
-			},
-			webAddress : DataTypes.TEXT
+			}
 		},
 		{ sequelize, modelName: 'Product' }
 	);

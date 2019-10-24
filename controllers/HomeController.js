@@ -19,7 +19,7 @@ class HomeController {
 				res.render('home', data);
 			})
 			.catch(err => {
-				res.send(err);
+				console.log(err);
 			});
 	}
 }
