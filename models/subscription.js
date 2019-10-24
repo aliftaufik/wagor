@@ -25,7 +25,26 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			}
 		},
-		{ sequelize, modelName: 'Subscription' }
+		{
+			hooks: {
+				afterCreate: (subscription, options) => {
+					sequelize.models.User.findByPk(subscription.UserId).then(user => {
+						sequelize.models.User.Update(
+							{
+								balance: user.balance - subscription.totalPrice
+							},
+							{
+								where: {
+									id: user.id
+								}
+							}
+						);
+					});
+				}
+			},
+			sequelize,
+			modelName: 'Subscription'
+		}
 	);
 	Subscription.associate = function(models) {
 		Subscription.belongsTo(models.User);
